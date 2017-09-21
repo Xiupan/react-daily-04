@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import Header from './Header'
-import Form from './Form'
-import VehicleCard from './VehicleCard'
 import '../styles/App.css';
 
 class App extends Component {
@@ -9,22 +6,42 @@ class App extends Component {
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
-  
+  constructor(props){
+    super(props)
 
-  componentWillMount(){
+    this.state = {
+      vehicles: [],
+      value: "",
+      pilot: ""
+    }
+  }
+
+  componentDidMount(){
     fetch('https://swapi.co/api/starships/')
     .then(response => response.json())
     .then((json) => {
-      console.log(json.results);
+      console.log("json.results", json.results);
     })
   }
   // FORM: HANDLE INPUT CHANGES
   // handleNameChange below:
+  handlePilotChange = (event) => {
+    console.log("handlePilotChange");
+    this.setState({
+      pilot: event.target.value
+    })
+  }
   // See form lesson for details.
   // Enter your code below:
 
   //  FORM: SUBMIT METHOD
   // handleSubmit below:
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.setState({
+      pilot: event.target.value
+    })
+  }
   // See form lesson for details.
   // Once the form is sumbited, two things need to happen: set the state of pilot to the input value.
   // Then, set the value of the input back to an empty string.
@@ -51,11 +68,44 @@ class App extends Component {
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
+    console.log("this.state", this.state);
     return (
       <div className="App">
-        <Header/>
-        <Form/>
-        <VehicleCard/>
+
+        {/* Header */}
+        <div className="container">
+          <div className="jumbotron">
+            <h1 className="display-3">Star Wars</h1>
+            <hr className="my-4"/>
+            <p className="lead">
+              The Vehicles of Star Wars
+            </p>
+          </div>
+        </div>
+
+        {/* Form */}
+        <div className="container">
+          <div className="card text-center">
+            <div className="card-block">
+              <h3 className="card-title">What is your name, pilot?</h3>
+              <form onSubmit={this.handleSubmit}>
+                <input type="text" onChange={this.handlePilotChange}/>
+                <button type="submit" className="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {/* Vehicle Card */}
+        <div className="container">
+          <div className="card">
+            <div className="card-block">
+              <h4 className="card-title">Card title</h4>
+              <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
