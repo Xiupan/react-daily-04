@@ -63,26 +63,28 @@ class App extends Component {
     */
     const vehicleCard = this.state.vehicles.map(vehicle => {
       return (
-        <div className="card" key={vehicle.name}>
-          <div className="card-block">
-            <h4 className="card-title">Vehicle: {vehicle.name}</h4>
-            <h6 className="card-subtitle mb-2 text-muted">Model: {vehicle.model}</h6>
-            <h6 className="card-subtitle mb-2 text-muted">Specs</h6>
-            <hr className="my-1"/>
-            <p className="card-text">Manufacturer: {vehicle.manufacturer}</p>
-            <hr className="my-1"/>
-            <p className="card-text">Class: {vehicle.starship_class}</p>
-            <hr className="my-1"/>
-            <p className="card-text">Passengers: {vehicle.passengers}</p>
-            <hr className="my-1"/>
-            <p className="card-text">Crew: {vehicle.crew}</p>
-            <hr className="my-1"/>
-            <p className="card-text">Length: {vehicle.length}</p>
-            <hr className="my-1"/>
-            <p className="card-text">Max Speed: {vehicle.MGLT}</p>
-            <hr className="my-1"/>
-            <p className="card-text">Cargo Capacity: {vehicle.cargo_capacity}</p>
-            <hr className="my-1"/>
+        <div className="col-sm-4" key={vehicle.name}>
+          <div className="card">
+            <div className="card-block">
+              <h4 className="card-title">Vehicle: {vehicle.name}</h4>
+              <h6 className="card-subtitle mb-2 text-muted">Model: {vehicle.model}</h6>
+              <h6 className="card-subtitle mb-2 text-muted">Specs</h6>
+              <hr className="my-1"/>
+              <p className="card-text">Manufacturer: {vehicle.manufacturer}</p>
+              <hr className="my-1"/>
+              <p className="card-text">Class: {vehicle.starship_class}</p>
+              <hr className="my-1"/>
+              <p className="card-text">Passengers: {vehicle.passengers}</p>
+              <hr className="my-1"/>
+              <p className="card-text">Crew: {vehicle.crew}</p>
+              <hr className="my-1"/>
+              <p className="card-text">Length: {vehicle.length}</p>
+              <hr className="my-1"/>
+              <p className="card-text">Max Speed: {vehicle.MGLT}</p>
+              <hr className="my-1"/>
+              <p className="card-text">Cargo Capacity: {vehicle.cargo_capacity}</p>
+              <hr className="my-1"/>
+            </div>
           </div>
         </div>
       )
@@ -113,6 +115,7 @@ class App extends Component {
             </div>
           </div>
         </div>
+        
         <div className="container">
           <div className="card-deck">
             {vehicleCard}

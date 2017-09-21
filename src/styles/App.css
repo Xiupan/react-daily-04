@@ -6,6 +6,10 @@
   margin: 5px;
 }
 
+.col-sm-4{
+  justify-content: space-around;
+}
+
 .form{
   text-align: center;
 }
