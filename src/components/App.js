@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../styles/App.css';
 
 class App extends Component {
@@ -6,7 +6,7 @@ class App extends Component {
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -16,20 +16,15 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
-    fetch('https://swapi.co/api/starships/')
-    .then(response => response.json())
-    .then((json) => {
-      console.log("json.results", json.results);
+  componentDidMount() {
+    fetch('https://swapi.co/api/starships/').then(response => response.json()).then((json) => {
+      this.setState({vehicles: json.results})
     })
   }
   // FORM: HANDLE INPUT CHANGES
   // handleNameChange below:
   handlePilotChange = (event) => {
-    console.log("handlePilotChange");
-    this.setState({
-      pilot: event.target.value
-    })
+    this.setState({pilot: event.target.value})
   }
   // See form lesson for details.
   // Enter your code below:
@@ -38,9 +33,7 @@ class App extends Component {
   // handleSubmit below:
   handleSubmit = (event) => {
     event.preventDefault()
-    this.setState({
-      pilot: event.target.value
-    })
+    this.setState({pilot: event.target.value})
   }
   // See form lesson for details.
   // Once the form is sumbited, two things need to happen: set the state of pilot to the input value.
@@ -68,7 +61,32 @@ class App extends Component {
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
-    console.log("this.state", this.state);
+    const vehicleCard = this.state.vehicles.map(vehicle => {
+      return (
+        <div className="card" key={vehicle.name}>
+          <div className="card-block">
+            <h4 className="card-title">Vehicle: {vehicle.name}</h4>
+            <h6 className="card-subtitle mb-2 text-muted">Model: {vehicle.model}</h6>
+            <h6 className="card-subtitle mb-2 text-muted">Specs</h6>
+            <hr className="my-1"/>
+            <p className="card-text">Manufacturer: {vehicle.manufacturer}</p>
+            <hr className="my-1"/>
+            <p className="card-text">Class: {vehicle.starship_class}</p>
+            <hr className="my-1"/>
+            <p className="card-text">Passengers: {vehicle.passengers}</p>
+            <hr className="my-1"/>
+            <p className="card-text">Crew: {vehicle.crew}</p>
+            <hr className="my-1"/>
+            <p className="card-text">Length: {vehicle.length}</p>
+            <hr className="my-1"/>
+            <p className="card-text">Max Speed: {vehicle.MGLT}</p>
+            <hr className="my-1"/>
+            <p className="card-text">Cargo Capacity: {vehicle.cargo_capacity}</p>
+            <hr className="my-1"/>
+          </div>
+        </div>
+      )
+    })
     return (
       <div className="App">
 
@@ -95,15 +113,9 @@ class App extends Component {
             </div>
           </div>
         </div>
-
-        {/* Vehicle Card */}
         <div className="container">
-          <div className="card">
-            <div className="card-block">
-              <h4 className="card-title">Card title</h4>
-              <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+          <div className="card-deck">
+            {vehicleCard}
           </div>
         </div>
       </div>
