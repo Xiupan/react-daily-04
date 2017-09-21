@@ -1,4 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Header from './Header'
+import Form from './Form'
+import VehicleCard from './VehicleCard'
 import '../styles/App.css';
 
 class App extends Component {
@@ -6,15 +9,19 @@ class App extends Component {
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
+  
 
-
-
+  componentWillMount(){
+    fetch('https://swapi.co/api/starships/')
+    .then(response => response.json())
+    .then((json) => {
+      console.log(json.results);
+    })
+  }
   // FORM: HANDLE INPUT CHANGES
   // handleNameChange below:
   // See form lesson for details.
   // Enter your code below:
-
-
 
   //  FORM: SUBMIT METHOD
   // handleSubmit below:
@@ -23,7 +30,6 @@ class App extends Component {
   // Then, set the value of the input back to an empty string.
   // Enter your code below:
 
-
   // LIFECYCLE
   // Which lifecycle is best for fetching data?
   // Inside this lifecycle, you will fetch the vehicles from here: https://swapi.co/api/vehicles/
@@ -31,7 +37,6 @@ class App extends Component {
   // In your response look for 'results'. It should return this array.
   // You will want to use this array when you set the state of 'vehicles'. You will need this data in your render.
   // Enter your code below:
-
 
   // RENDER
   // Before you can map over the data you've fetched, you will first need to store that 'state' in a variable.
@@ -46,16 +51,13 @@ class App extends Component {
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
-    })
     return (
       <div className="App">
-        {/*
-        The App component needs the following:
-         jumbotron section, form section, vehicle cards section.
-         Your form will also need a header in which you will pass the state of the form upon submit.
-         */}
+        <Header/>
+        <Form/>
+        <VehicleCard/>
       </div>
-    );
+    )
   }
 }
 
