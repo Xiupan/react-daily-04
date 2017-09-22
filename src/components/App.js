@@ -24,7 +24,9 @@ class App extends Component {
   // FORM: HANDLE INPUT CHANGES
   // handleNameChange below:
   handlePilotChange = (event) => {
-    this.setState({pilot: event.target.value})
+    this.setState({
+      pilot: event.target.value
+    })
   }
   // See form lesson for details.
   // Enter your code below:
@@ -33,7 +35,9 @@ class App extends Component {
   // handleSubmit below:
   handleSubmit = (event) => {
     event.preventDefault()
-    this.setState({pilot: event.target.value})
+    this.setState({
+      pilot: event.target.value
+    })
   }
   // See form lesson for details.
   // Once the form is sumbited, two things need to happen: set the state of pilot to the input value.
@@ -109,13 +113,16 @@ class App extends Component {
             <div className="card-block">
               <h3 className="card-title">What is your name, pilot?</h3>
               <form onSubmit={this.handleSubmit}>
-                <input type="text" onChange={this.handlePilotChange}/>
+                <input type="text" onChange={this.handlePilotChange} placeholder="Enter your name"/>
                 <button type="submit" className="btn btn-primary">Submit</button>
               </form>
+              <h2 className="card-title">
+                {this.state.pilot}
+              </h2>
             </div>
           </div>
         </div>
-        
+
         <div className="container">
           <div className="card-deck">
             {vehicleCard}
